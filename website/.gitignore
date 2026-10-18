@@ -1,0 +1,6 @@
+# Fichiers sensibles
+.env
+
+# Builder
+wsbuilder
+build/
