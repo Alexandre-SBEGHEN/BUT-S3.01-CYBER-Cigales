@@ -10,8 +10,8 @@
 </div>
 
 <div align="center">
-    <img alt="License" src="https://img.shields.io/github/license/Alexandre-SBEGHEN/BUT-S3.01-CYBER-Cigales">
-    <img alt="Repo Size" src="https://img.shields.io/github/repo-size/Alexandre-SBEGHEN/BUT-S3.01-CYBER-Cigales">
+    <img alt="License" src="https://img.shields.io/github/license/Alexandre-SBEGHEN/BUT-S3.01-CYBER-Cigales?v=2">
+    <img alt="Repo Size" src="https://img.shields.io/github/repo-size/Alexandre-SBEGHEN/BUT-S3.01-CYBER-Cigales?v=2">
     <a href="https://www.codefactor.io/repository/github/alexandre-sbeghen/but-s3.01-cyber-cigales"><img src="https://www.codefactor.io/repository/github/alexandre-sbeghen/but-s3.01-cyber-cigales/badge" alt="CodeFactor" /></a>
 </div>
 
