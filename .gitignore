@@ -1,0 +1,8 @@
+# Fichiers MacOS
+.DS_STORE
+
+# Fichiers IntelliJ
+.idea
+*.iml
+out
+gen
