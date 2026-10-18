@@ -1,6 +1,9 @@
 # Fichiers MacOS
 .DS_STORE
 
+# Fichiers VSCode
+.vscode/
+
 # Fichiers IntelliJ
 .idea
 *.iml
