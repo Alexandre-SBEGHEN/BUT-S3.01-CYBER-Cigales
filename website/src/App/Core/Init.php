@@ -1,4 +1,7 @@
 <?php
+
+namespace App\Core;
+
 /**
  * Init.php
  *
@@ -11,9 +14,6 @@
  *
  * @author Alexandre SBEGHEN
  */
-
-namespace App\Core;
-
 class Init {
     private static string $rootDir;
     private static ?Env $env;
