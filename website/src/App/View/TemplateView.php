@@ -21,17 +21,17 @@ class TemplateView {
      * L'insertion s'arrête après la balise <code>body</code>.
      *
      * @param string $title Titre de la page.
-     * @param string $description Meta-description de la page.
+     * @param string $description Meta description de la page.
      * @param array $cssNames Facultatif, lien vers les styles CSS.
      * @return void
      */
     public static function htmlBegin(string $title, string $description, array $cssNames=[]): void {
         //Récupération des CSS
-        $cssElements = '';
+        $cssHtmlElements = '';
         if (!empty($cssNames)) {
             foreach ($cssNames as $name) {
-                $cssElements .= "\n\t";
-                $cssElements .= sprintf('<link rel="stylesheet" href="%s">', $name);
+                $cssHtmlElements .= "\n\t";
+                $cssHtmlElements .= sprintf('<link rel="stylesheet" href="/assets/styles/%s">', $name);
             }
         }
 
@@ -44,7 +44,7 @@ class TemplateView {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>$title</title>
     <meta name="description" content="$description">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">$cssElements
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">$cssHtmlElements
 </head>
 <body>
 
@@ -68,4 +68,42 @@ HTML;
 HTML;
     }
 
+    /**
+     * Insère un header dans la page.
+     *
+     * Contient l'en-tête de la page avec notamment
+     * le menu de navigation, le logo, etc.
+     *
+     * @return void
+     */
+    public static function pageHeader(): void {
+        // Affichage du HTML
+        echo <<< HTML
+    <header>
+        <nav class="navmenu">
+            
+        </nav>
+    </header>
+
+HTML;
+
+    }
+
+    /**
+     * Insère un footer dans la page.
+     *
+     * Contient le bas de page avec notamment
+     * les mentions légales.
+     *
+     * @return void
+     */
+    public static function pageFooter(): void {
+        // Insertion du html
+        echo <<< HTML
+
+    <footer>
+        
+    </footer>
+HTML;
+    }
 }
