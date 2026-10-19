@@ -12,6 +12,8 @@ use App\View\HomeView;
  * @author Alexandre SBEGHEN
  */
 class HomeController {
+    public const ROUTABLE = true;
+
     public function execute(): void {
         $view = new HomeView();
         $view->show();

@@ -13,6 +13,8 @@ use App\View\Error404View;
  * @author Alexandre SBEGHEN
  */
 class Error404Controller {
+    public const ROUTABLE = false;
+
     public function execute(): void {
         $view = new Error404View();
         $view->show();

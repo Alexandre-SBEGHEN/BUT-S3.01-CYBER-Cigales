@@ -19,31 +19,69 @@ use Exception;
  * @author SBEGHEN Alexandre
  */
 class Router {
-    private array $routes;
+    private array $args;
 
-    public function __construct(array $routes) {
-        $this->routes = $routes;
+    public function __construct(array $args) {
+        $this->args = $args;
+    }
+
+    /**
+     * Formate une string pour obtenir
+     * le chemin vers le contrôleur associé.
+     * Une string vide renvoie par défaut le
+     * chemin contrôleur de la page d'accueil
+     * <code>HomeController</code>.
+     *
+     * Exemples :
+     * <pre>
+     *     '' => 'App\\Controller\\HomeController'
+     *     'home' => 'App\\Controller\\HomeController'
+     *     'bonjour' => 'App\\Controller\\BonjourController'
+     *     'AbCD' => 'App\\Controller\\AbcdController'
+     * </pre>
+     *
+     * <strong>NOTE :</strong> Il n'y a pas de vérification de l'existence
+     * (ou non) de la classe renvoyée, on se charge ici
+     * seulement de formatter la string.
+     *
+     * @param string $arg Argument à formater en classe.
+     * @return string Chemin vers le contrôleur supposé de la classe.
+     */
+    private function getControllerFromArg(string $arg): string {
+        // Convertir l'argument en PascalCase
+        $className = (empty($arg) ? 'Home' : ucfirst(strtolower($arg))) . 'Controller';
+        $classPath = 'App\\Controller\\' . $className;
+
+        return $classPath;
     }
 
     /**
      * Exécution du routeur.
      *
-     * Cherche à partir du chemin et de la table
-     * de routage la page désirée. Renvoie une
-     * erreur 404 si la page / fichier / dossier
-     * sont introuvables.
+     * Exécute automatiquement le contrôleur
+     * associé au premier argument, formaté
+     * via <code>getControllerFromArg()</code>.
      *
-     * @param string $uri Chemin vers la ressource (URI)
+     * Si la classe du contrôleur n'existe pas ou
+     * que la classe n'est pas routable (<code>ROUTABLE = false</code>)
+     * alors une erreur 404 est renvoyée et la
+     * page d'erreur s'affiche.
+     *
      * @return void
+     *
+     * @see getControllerFromArg()
      */
-    public function execute(string $uri): void {
+    public function execute(): void {
         try {
             // Erreur 404 si la page n'existe pas
-            if (!array_key_exists($uri, $this->routes))
-                throw new Exception("Route not found: $uri");
+            $class = $this->getControllerFromArg($this->args[1]);
+            if (!class_exists($class))
+                throw new Exception("Class not found: $class");
+            if (!defined("$class::ROUTABLE") || !$class::ROUTABLE)
+                throw new Exception("Unauthorized controller: $class");
 
             // Exécuter le contrôleur de la page
-            $controller = new $this->routes[$uri]();
+            $controller = new $class;
             $controller->execute();
         } catch (Exception $e) {
             http_response_code(404);

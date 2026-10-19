@@ -12,6 +12,8 @@ use App\View\AboutView;
  * @author Alexandre SBEGHEN
  */
 class AboutController {
+    public const ROUTABLE = true;
+
     public function execute(): void {
         $view = new AboutView();
         $view->show();
