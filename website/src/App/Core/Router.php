@@ -2,7 +2,7 @@
 
 namespace App\Core;
 
-use App\Controller\Error404Controller;
+use App\Controller\ErrorController;
 use Exception;
 
 /**
@@ -73,7 +73,7 @@ class Router {
      */
     public function execute(): void {
         try {
-            // Erreur 404 si la page n'existe pas
+            // Erreur si la classe n'existe pas ou si le contrôleur n'est pas routable
             $class = $this->getControllerFromArg($this->args[0]);
             if (!class_exists($class))
                 throw new Exception("Class not found: $class");
@@ -83,9 +83,12 @@ class Router {
             // Exécuter le contrôleur de la page
             $controller = new $class;
             $controller->execute();
-        } catch (Exception $e) {
-            http_response_code(404);
-            $controller = new Error404Controller();
+        } catch (Exception) {
+            $controller = new ErrorController(
+                404,
+                "Oups... Une erreur est survenue",
+                "La ressource désirée est introuvable."
+            );
             $controller->execute();
         }
     }
