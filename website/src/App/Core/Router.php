@@ -74,7 +74,7 @@ class Router {
     public function execute(): void {
         try {
             // Erreur 404 si la page n'existe pas
-            $class = $this->getControllerFromArg($this->args[1]);
+            $class = $this->getControllerFromArg($this->args[0]);
             if (!class_exists($class))
                 throw new Exception("Class not found: $class");
             if (!defined("$class::ROUTABLE") || !$class::ROUTABLE)

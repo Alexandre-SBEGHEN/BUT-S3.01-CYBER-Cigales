@@ -12,8 +12,6 @@
 
 use App\Core\Init;
 use App\Core\Router;
-use App\Controller\HomeController;
-use App\Controller\AboutController;
 
 // Charger automatiquement les classes
 require_once '../src/App/Core/Autoloader.php';
@@ -22,7 +20,7 @@ require_once '../src/App/Core/Autoloader.php';
 Init::init(dirname(__DIR__), dirname(__DIR__) . '/.env');
 
 // Routage
-$path = rtrim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/') ?: '/';
+$path = trim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?? '', '/') ?: '/';
 $parts = explode('/', $path);
 $router = new Router($parts);
 $router->execute();
