@@ -1,6 +1,6 @@
 <h1 align="center">BUT 2, S3.01 — CYBER Cigales</h1>
 
-<p align="center"><i>par BARTAL Manal, CHAIB EDDOUR Kawthar, GOUIN Gabriel, Alexandre SBEGHEN</i></p>
+<p align="center"><i>par BARTAL Manal, CHAIB EDDOUR Kawthar, GOUIN Gabriel, SBEGHEN Alexandre</i></p>
 
 <div align="center">
     <img alt="php" src="https://img.shields.io/badge/php-%23777BB4.svg?&logo=php&logoColor=white">
