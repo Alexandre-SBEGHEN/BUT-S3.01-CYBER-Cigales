@@ -12,7 +12,7 @@ namespace App\Core;
  * @author Alexandre SBEGHEN
  */
 class Env {
-    private int $PhpErrorReporting;
+    private int $phpErrorReporting;
 
     /**
      * Constructeur de Env.
@@ -28,10 +28,16 @@ class Env {
         $ini = parse_ini_file($envPath, true);
 
         // Section PHP
-        $this->PhpErrorReporting = $ini['php']['error_reporting'];
+        $this->phpErrorReporting = $ini['php']['error_reporting'];
     }
 
+    /**
+     * Permet d'obtenir le niveau de report
+     * des erreurs et warning.
+     *
+     * @return int Niveau de report d'erreurs.
+     */
     public function getPhpErrorReporting(): int {
-        return $this->PhpErrorReporting;
+        return $this->phpErrorReporting;
     }
 }
