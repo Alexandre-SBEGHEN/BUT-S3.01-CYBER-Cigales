@@ -47,11 +47,11 @@ class Router {
      * @param string $arg Argument à formater en classe.
      * @return string Chemin vers le contrôleur supposé de la classe.
      *
-     * @see Util::snakeCase2PascalCase()
+     * @see Util::snake2Pascal()
      */
     public static function getControllerFromArg(string $arg): string {
         // Convertir l'argument en PascalCase
-        $className = (empty($arg) ? 'Home' : Util::snakeCase2PascalCase($arg)) . 'Controller';
+        $className = (empty($arg) ? 'Home' : Util::snake2Pascal($arg)) . 'Controller';
         $classPath = 'App\\Controller\\' . $className;
 
         return $classPath;
