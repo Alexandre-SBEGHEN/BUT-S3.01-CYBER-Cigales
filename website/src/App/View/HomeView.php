@@ -24,13 +24,12 @@ class HomeView {
             'Ateliers CYBER & Crypto',
             'Participez à un escape game numérique interactif unique. Apprenez les notions clés de la sécurité informatique à travers des énigmes et des mini-jeux.',
         );
-        TemplateView::pageHeader();
-        echo <<< HTML
+        TemplateView::pageHeader(); ?>
     <main>
         <h1>CYBER Cigales</h1>
         <p>Un escape game numérique interactif permettant de découvrir les notions fondamentales de la sécurité informatique à travers une série d’énigmes et de mini-jeux.</p>
     </main>
-HTML;
+<?php
         TemplateView::pageFooter();
         TemplateView::htmlEnd();
     }

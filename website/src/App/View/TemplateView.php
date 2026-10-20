@@ -25,30 +25,21 @@ class TemplateView {
      * @param array $cssNames Facultatif, lien vers les styles CSS.
      * @return void
      */
-    public static function htmlBegin(string $title, string $description, array $cssNames=[]): void {
-        //Récupération des CSS
-        $cssHtmlElements = '';
-        if (!empty($cssNames)) {
-            foreach ($cssNames as $name) {
-                $cssHtmlElements .= "\n\t";
-                $cssHtmlElements .= sprintf('<link rel="stylesheet" href="/assets/styles/%s">', $name);
-            }
-        }
-
-        // Insertion du HTML
-        echo <<< HTML
+    public static function htmlBegin(string $title, string $description, array $cssNames=[]): void { ?>
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>$title</title>
-    <meta name="description" content="$description">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">$cssHtmlElements
+    <title><?= $title ?></title>
+    <meta name="description" content="<?= $description ?>">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+<?php foreach ($cssNames as $name): ?>
+    <link rel="stylesheet" href="/assets/styles/<?= $name ?>">
+<?php endforeach; ?>
 </head>
 <body>
-
-HTML;
+<?php
     }
 
     /**
@@ -59,13 +50,10 @@ HTML;
      * @return void
      * @see htmlBegin()
      */
-    public static function htmlEnd(): void {
-        // Insertion du HTML
-        echo <<< HTML
-
+    public static function htmlEnd(): void { ?>
 </body>
 </html>
-HTML;
+<?php
     }
 
     /**
@@ -76,17 +64,13 @@ HTML;
      *
      * @return void
      */
-    public static function pageHeader(): void {
-        // Affichage du HTML
-        echo <<< HTML
+    public static function pageHeader(): void { ?>
     <header>
-        <nav class="navmenu">
-            
+        <nav>
+
         </nav>
     </header>
-
-HTML;
-
+<?php
     }
 
     /**
@@ -97,13 +81,10 @@ HTML;
      *
      * @return void
      */
-    public static function pageFooter(): void {
-        // Insertion du html
-        echo <<< HTML
-
+    public static function pageFooter(): void { ?>
     <footer>
-        
+
     </footer>
-HTML;
+<?php
     }
 }

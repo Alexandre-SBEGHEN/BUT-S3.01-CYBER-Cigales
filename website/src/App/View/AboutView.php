@@ -24,8 +24,7 @@ class AboutView {
             'A propos',
             'Qui sommes-nous ? Découvrez notre équipe.',
         );
-        TemplateView::pageHeader();
-        echo <<< HTML
+        TemplateView::pageHeader(); ?>
     <main>
         <h1>A propos de nous</h1>
         <ul>
@@ -35,7 +34,7 @@ class AboutView {
             <li>SBEGHEN Alexandre</li>
         </ul>
     </main>
-HTML;
+<?php
         TemplateView::pageFooter();
         TemplateView::htmlEnd();
     }

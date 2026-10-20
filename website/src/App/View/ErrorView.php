@@ -27,13 +27,12 @@ class ErrorView {
         TemplateView::htmlBegin(
             "Erreur $this->errorCode",
             'Une erreur est survenue. Utilisez notre menu de navigation ou retournez à l\'accueil pour poursuivre votre visite.'
-        );
-        echo <<< HTML
+        ); ?>
     <main>
-        <h1>$this->errorMessage</h1>
-        <p>$this->errorDescription</p>
+        <h1><?= $this->errorMessage ?></h1>
+        <p><?= $this->errorDescription ?></p>
     </main>
-HTML;
+<?php
         TemplateView::htmlEnd();
     }
 }
