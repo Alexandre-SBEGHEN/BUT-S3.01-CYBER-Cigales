@@ -15,7 +15,7 @@ use App\View\ErrorView;
  *
  * @author Alexandre SBEGHEN
  */
-class ErrorController {
+class ErrorController extends Controller {
     public const ROUTABLE = false;
 
     /**
