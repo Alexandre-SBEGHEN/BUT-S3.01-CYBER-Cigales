@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\View\LegalView;
+
 /**
  * LegalController.php
  *
@@ -13,6 +15,7 @@ class LegalController {
     public const ROUTABLE = true;
 
     public function execute(): void {
-        echo 'page de mention légale';
+        $view = new LegalView();
+        $view->show();
     }
 }
