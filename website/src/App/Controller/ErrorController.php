@@ -23,7 +23,9 @@ class ErrorController extends Controller {
      * @param string $errorMessage Message court.
      * @param string $errorDescription Descriptif plus long de l'erreur.
      */
-    public function __construct(private int $errorCode, private string $errorMessage, private string $errorDescription) {}
+    public function __construct(string $method, array $args, private int $errorCode, private string $errorMessage, private string $errorDescription) {
+        parent::__construct($method, $args);
+    }
 
     public function execute(): void {
         http_response_code($this->errorCode);
