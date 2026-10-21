@@ -26,14 +26,14 @@ class HomeView {
         );
         TemplateView::pageHeader(); ?>
     <main>
-        <section>
-            <h1>Bienvenue !</h1>
-            <p>Apprends à protéger tes données personnelles !</p>
+        <section class="hero">
+            <h1 class="hero__title">Bienvenue !</h1>
+            <p class="hero__text">Apprends à protéger tes données personnelles !</p>
         </section>
 
-        <section>
-            <h2>Le principe</h2>
-            <ol>
+        <section class="steps">
+            <h2 class="steps__title">Le principe</h2>
+            <ol class="steps__list">
 <?php
                 $steps = [
                     ['name' => 'Connecte-toi', 'desc' => 'Crée ton compte pour sauvegarder ta progression.'],
@@ -41,9 +41,9 @@ class HomeView {
                     ['name' => 'Réussis à t\'échapper', 'desc' => 'Termine le jeu et retiens les bonnes méthode !']
                 ];
                 for ($i = 0; $i < count($steps); ++$i): $step = $steps[$i]; ?>
-                <li>
-                    <h3><?= sprintf('%d. %s', $i+1, $step['name']) ?></h3>
-                    <p><?= $step['desc'] ?></p>
+                <li class="steps__item">
+                    <h3 class="steps__item-title"><?= $step['name'] ?></h3>
+                    <p class="steps__item-text"><?= $step['desc'] ?></p>
                 </li>
 <?php endfor; ?>
             </ol>
