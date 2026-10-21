@@ -14,6 +14,17 @@ use App\Core\Util;
  * @author Alexandre SBEGHEN
  */
 abstract class Controller {
+    private string $method;
+    private array $args;
+
+    /**
+     * @param string $method Méthode de l'URL à exécuter
+     * @param array $args Arguments de la méthode
+     */
+    public function __construct(string $method, array $args) {
+        $this->method = (!empty($method)) ? self::getMethodFromArg($method) : '';
+        $this->args = $args;
+    }
 
     /**
      * Formate une string pour obtenir
@@ -37,5 +48,24 @@ abstract class Controller {
      */
     public static function getMethodFromArg(string $arg): string {
         return 'request' . Util::snake2Pascal($arg);
+    }
+    public function execute(): void {
+        // Pas de méthode à exécuter
+        if (empty($this->method))
+            return;
+
+        // Erreur 404 si elle n'existe pas
+        if (!method_exists($this, $this->method)) {
+            $controller = new ErrorController('', [],
+                404,
+                "Oups... Une erreur est survenue",
+                "La ressource désirée est introuvable."
+            );
+            $controller->execute();
+            exit;
+        }
+
+        // Elle existe -> on l'exécute
+        $this->{$this->method}($this->args);
     }
 }

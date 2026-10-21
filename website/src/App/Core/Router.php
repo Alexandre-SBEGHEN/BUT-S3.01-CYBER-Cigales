@@ -83,10 +83,14 @@ class Router {
                 throw new Exception("Unauthorized controller: $class");
 
             // Exécuter le contrôleur de la page
-            $controller = new $class;
+            $method = $this->args[1] ?? '';
+            $args = (!empty($method) && !empty($this->args)) ? $this->args : [];
+            array_shift($args); array_shift($args);
+
+            $controller = new $class($method, $args);
             $controller->execute();
         } catch (Exception) {
-            $controller = new ErrorController(
+            $controller = new ErrorController('', [],
                 404,
                 "Oups... Une erreur est survenue",
                 "La ressource désirée est introuvable."
