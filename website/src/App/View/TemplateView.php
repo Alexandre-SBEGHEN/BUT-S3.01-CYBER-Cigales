@@ -66,8 +66,15 @@ class TemplateView {
      */
     public static function pageHeader(): void { ?>
     <header>
+        <p>Ateliers CYBER & Crypto</p>
         <nav>
-
+            <ul>
+<?php
+$links = array('Accueil' => '/', 'Connexion' => '/login', 'A propos' => '/about');
+foreach ($links as $name => $href): ?>
+                <li><a href="<?= $href ?>"><?= $name ?></a></li>
+<?php endforeach; ?>
+            </ul>
         </nav>
     </header>
 <?php
