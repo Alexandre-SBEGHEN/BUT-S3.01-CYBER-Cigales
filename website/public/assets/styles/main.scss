@@ -1,0 +1,132 @@
+/// main.scss
+///
+/// Style principal
+///
+/// Un seul style par page = un seul
+/// téléchargement = plus rapide.
+///
+/// On garde une cohérence dans la
+/// conception, pas de création de
+/// boutons 100 fois dans pleins de
+/// styles différents.
+///
+/// @author Alexandre SBEGHEN
+
+@use "palette";
+
+// ---------- Page Home ----------
+
+body {
+  background-color: palette.$BG;
+  color: palette.$TEXT;
+}
+
+.hero {
+  padding-top: 5rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__title {
+    font-family: "JetBrains Mono", sans-serif;
+    font-weight: bold;
+    font-size: 32pt;
+  }
+
+  &__text {
+    padding-top: 1rem;
+
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 15pt;
+
+    text-align: center;
+
+    color: palette.$TEXT_DIM;
+  }
+
+  &__button {
+    margin-top: 2rem;
+  }
+}
+
+.steps {
+  padding-top: 5rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__title {
+    font-family: "JetBrains Mono", sans-serif;
+    font-weight: bold;
+    font-size: 24pt;
+  }
+
+  &__list {
+    padding-top: 2rem;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 1.5rem;
+
+    counter-reset: step;
+  }
+
+  &__item {
+    padding: 3rem 2rem;
+    border-radius: 16px;
+    border: 1px solid palette.$BORDER;
+    background-color: palette.$SURFACE;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    counter-increment: step;
+
+    font-family: "Plus Jakarta Sans", sans-serif;
+
+    transition: border-color 0.2s;
+    &:hover {
+      border-color: palette.$BLUE;
+    }
+
+    &-title {
+      font-weight: bold;
+
+      &::before {
+        content: counter(step) ". ";
+      }
+    }
+
+    &-text {
+      padding-top: 0.5rem;
+      text-align: center;
+      color: palette.$TEXT-DIM;
+    }
+  }
+}
+
+// ---------- Divers ----------
+
+.button {
+  padding: 1rem 2rem;
+  border-radius: 24px;
+
+  border: 1px solid palette.$VIOLET;
+  background-color: palette.$VIOLET-DARK;
+  box-shadow: 0 0 16px 2px palette.$VIOLET;
+
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 12pt;
+  font-weight: bold;
+  text-decoration: none;
+  color: palette.$TEXT;
+
+  transition: 0.2s;
+  &:hover {
+    background-color: palette.$VIOLET;
+  }
+}
