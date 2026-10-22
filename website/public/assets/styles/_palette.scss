@@ -1,0 +1,21 @@
+/// palette.scss
+///
+/// Palette de couleurs du site web.
+///
+/// Permet de ne pas avoir à copier à chaque
+/// fois le code couleur d'un élément, et permet
+/// de tout modifier facilement si nécessaire.
+///
+/// @author Alexandre SBEGHEN
+
+$BG:        #0A0B14; // Fond de page
+$SURFACE:   #13152A; // Cartes, header, blocs
+$BORDER:    #262A4A; // Bordures 1px, séparateurs
+
+$TEXT:      #E6E8F5; // Texte principal
+$TEXT-DIM:  #9AA0C4; // Texte secondaire, légendes
+
+$BLUE:      #3D8BFF; // Accent principal (liens, boutons)
+$VIOLET:    #9B6BFF; // Accent secondaire (tags, icônes)
+$VIOLET-DARK: #6c3ec6; // Accent secondaire (tags, icônes)
+$PINK:      #FF4FD8; // Accent rare (hover, alertes, CTA)

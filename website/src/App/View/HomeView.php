@@ -22,13 +22,15 @@ class HomeView {
     public function show(): void {
         TemplateView::htmlBegin(
             'Ateliers CYBER & Crypto',
-            'Participez à un escape game numérique interactif unique. Apprenez les notions clés de la sécurité informatique à travers des énigmes et des mini-jeux.'
+            'Participez à un escape game numérique interactif unique. Apprenez les notions clés de la sécurité informatique à travers des énigmes et des mini-jeux.',
+                ['reset.css', 'fonts.css', 'main.css']
         );
         TemplateView::pageHeader(); ?>
     <main>
         <section class="hero">
             <h1 class="hero__title">Bienvenue !</h1>
-            <p class="hero__text">Apprends à protéger tes données personnelles !</p>
+            <h2 class="hero__text">Apprends à protéger tes données personnelles !</h2>
+            <a class="hero__button button" href="/login">Commencer</a>
         </section>
 
         <section class="steps">
