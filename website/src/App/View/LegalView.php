@@ -22,7 +22,57 @@ class LegalView {
         );
         TemplateView::pageHeader(); ?>
     <main>
+        <section>
+            <h1>Mentions Légales</h1>
+        </section>
 
+        <section>
+            <ul>
+<?php
+$cards = array(
+    [
+        'title' => 'Conception et réalisation du site',
+        'content' => [
+            'Pilotage et direction de projet : ANNI Samuel - Enseignant / Maître de conférences à <a href="https://www.univ-amu.fr/fr" target="_blank" rel="noopener noreferrer">Aix Marseille Université.</a>',
+            'Conception graphique et UI/UX Design : BARTAL Manal, CHAIB EDDOUR Kawthar, GOUIN Gabriel, SBEGHEN Alexandre.',
+            'Développement technique et intégration : BARTAL Manal, CHAIB EDDOUR Kawthar, GOUIN Gabriel, SBEGHEN Alexandre.'
+        ],
+        'footer' => null
+    ],
+    [
+        'title' => 'Auteurs',
+        'content' => ['Ce site a été conçu et développé par : BARTAL Manal, CHAIB EDDOUR Kawthar, GOUIN Gabriel, SBEGHEN Alexandre dans le cadre d\'un projet pédagogique, en deuxième année de BUT informatique — <a href="https://iut.univ-amu.fr/fr" target="_blank" rel="noopener noreferrer">IUT d\'Aix-Marseille.</a>'],
+        'footer' => 'Contact : <a href="mailto:cybercigales@alwaysdata.net">ateliers-cybersecurite@alwaysdata.net</a>'
+    ],
+    [
+        'title' => 'Hébergeur',
+        'footer' => 'Site hébergé par <a target="_blank" href="https://www.alwaysdata.com/fr/" rel="noopener noreferrer">AlwaysData</a>.'
+    ],
+    [
+        'title' => 'Contenu éditorial et mise à jour',
+        'footer' => '<em>Ateliers Cybersécurité</em> est un projet pédagogique : un escape game numérique destiné aux lycéennes afin de les sensibiliser à la protection de leurs données. Les informations mises à disposition sur le site ont une valeur indicative et pédagogique.'
+    ]
+);
+foreach ($cards as $card): ?>
+                <li>
+                    <h2><?= $card['title'] ?></h2>
+<?php if (!empty($card['content'])): ?>
+                    <div>
+<?php for ($i = 0; $i < count($card['content']); ++$i): ?>
+                        <p><?= $card['content'][$i] ?></p>
+<?php if ($i !== count($card['content']) - 1): ?>
+                        <hr>
+<?php endif; ?>
+<?php endfor; ?>
+                    </div>
+<?php endif; ?>
+<?php if (!is_null($card['footer'])): ?>
+                    <p><?= $card['footer'] ?></p>
+<?php endif ?>
+                </li>
+<?php endforeach; ?>
+            </ul>
+        </section>
     </main>
 <?php
         TemplateView::htmlEnd();
