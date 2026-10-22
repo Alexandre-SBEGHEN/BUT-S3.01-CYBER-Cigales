@@ -18,16 +18,17 @@ class LegalView {
     public function show(): void {
         TemplateView::htmlBegin(
             'Mentions Légales',
-            'Consultez les mentions légales du site pour en savoir plus sur l\'éditeur du site, l\'hébergement, la propriété intellectuelle et vos droits.'
+            'Consultez les mentions légales du site pour en savoir plus sur l\'éditeur du site, l\'hébergement, la propriété intellectuelle et vos droits.',
+                ['reset.css', 'fonts.css', 'main.css']
         );
         TemplateView::pageHeader(); ?>
     <main>
-        <section>
-            <h1>Mentions Légales</h1>
+        <section class="hero">
+            <h1 class="hero__title">Mentions Légales</h1>
         </section>
 
-        <section>
-            <ul>
+        <section class="infos">
+            <ul class="infos__list">
 <?php
 $cards = array(
     [
@@ -54,20 +55,20 @@ $cards = array(
     ]
 );
 foreach ($cards as $card): ?>
-                <li>
-                    <h2><?= $card['title'] ?></h2>
+                <li class="infos__item">
+                    <h2 class="infos__item-title"><?= $card['title'] ?></h2>
 <?php if (!empty($card['content'])): ?>
-                    <div>
+                    <div class="infos__item-content">
 <?php for ($i = 0; $i < count($card['content']); ++$i): ?>
-                        <p><?= $card['content'][$i] ?></p>
+                        <p class="infos__item-text"><?= $card['content'][$i] ?></p>
 <?php if ($i !== count($card['content']) - 1): ?>
-                        <hr>
+                        <hr class="infos__item-hr hr">
 <?php endif; ?>
 <?php endfor; ?>
                     </div>
 <?php endif; ?>
 <?php if (!is_null($card['footer'])): ?>
-                    <p><?= $card['footer'] ?></p>
+                    <p class="infos_item-text"><?= $card['footer'] ?></p>
 <?php endif ?>
                 </li>
 <?php endforeach; ?>
