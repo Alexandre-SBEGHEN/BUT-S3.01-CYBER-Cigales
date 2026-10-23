@@ -1,3 +1,10 @@
+/// _util.scss
+///
+/// Scripts divers
+///
+/// @author Alexandre SBEGHEN
+
+// Détecter l'utilsation d'un téléphone
 @mixin mobile {
   @media (max-width: 768px) {
     @content;
