@@ -13,13 +13,79 @@
 /// @author Alexandre SBEGHEN
 
 @use "palette";
+@use "util";
 
-// ---------- Page Home ----------
+// ---------- Général ----------
 
 body {
   background-color: palette.$BG;
   color: palette.$TEXT;
 }
+
+// ---------- Menu de navigation ----------
+
+.navbar {
+  padding: 2rem 4rem;
+
+  background-color: palette.$SURFACE;
+  border-bottom: solid 1px palette.$BORDER;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  font-family: "JetBrains Mono", monospace;
+
+  &__title {
+    color: palette.$TEXT;
+    font-size: 16pt;
+    text-align: center;
+    
+    @include util.mobile {
+      display: none;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  &__item {
+
+    &-link {
+      text-decoration: none;
+      font-size: 14pt;
+
+      color: palette.$TEXT;
+
+      text-align: center;
+
+      &--current {
+        color: palette.$TEXT-DIM;
+
+        &::before {
+          content: "> ";
+        }
+      }
+
+      transition: all 0.2s;
+      &:hover {
+        color: palette.$VIOLET;
+      }
+    }
+  }
+
+  @include util.mobile {
+    padding: 2rem 0.5rem;
+    justify-content: center;
+  }
+}
+
+// ---------- Page Home ----------
 
 .hero {
   padding-top: 5rem;
@@ -29,7 +95,7 @@ body {
   align-items: center;
 
   &__title {
-    font-family: "JetBrains Mono", sans-serif;
+    font-family: "JetBrains Mono", monospace;
     font-weight: bold;
     font-size: 32pt;
   }
@@ -58,7 +124,7 @@ body {
   align-items: center;
 
   &__title {
-    font-family: "JetBrains Mono", sans-serif;
+    font-family: "JetBrains Mono", monospace;
     font-weight: bold;
     font-size: 24pt;
   }
@@ -94,6 +160,7 @@ body {
     }
 
     &-title {
+      text-align: center;
       font-weight: bold;
 
       &::before {
@@ -105,6 +172,11 @@ body {
       padding-top: 0.5rem;
       text-align: center;
       color: palette.$TEXT-DIM;
+    }
+
+    @include util.mobile {
+      padding: 2rem 1rem;
+      max-width: 15rem;
     }
   }
 }

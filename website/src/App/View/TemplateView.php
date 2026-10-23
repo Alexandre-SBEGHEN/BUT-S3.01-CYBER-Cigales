@@ -66,13 +66,13 @@ class TemplateView {
      */
     public static function pageHeader(): void { ?>
     <header>
-        <nav class="navmenu">
-            <p class="navmenu__title">Ateliers CYBER & Crypto</p>
-            <ul class="navmenu__list">
+        <nav class="navbar">
+            <p class="navbar__title">Ateliers CYBER & Crypto</p>
+            <ul class="navbar__list">
 <?php
 $links = array('Accueil' => '/', 'Connexion' => '/login', 'A propos' => '/about');
 foreach ($links as $name => $href): ?>
-                <li class="navmenu__item"><a class="navmenu__link" href="<?= $href ?>"><?= $name ?></a></li>
+                <li class="navbar__item"><a class="navbar__item-link" href="<?= $href ?>"><?= $name ?></a></li>
 <?php endforeach; ?>
             </ul>
         </nav>
