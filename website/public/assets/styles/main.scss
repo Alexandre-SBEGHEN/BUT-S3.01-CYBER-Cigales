@@ -23,6 +23,7 @@ body {
 
 .hero {
   padding-top: 5rem;
+  margin-bottom: 3rem;
 
   display: flex;
   flex-direction: column;
@@ -108,6 +109,63 @@ body {
     }
   }
 }
+
+// ---------- Page Mentions Légales ----------
+.infos {
+  padding: 0 1rem 4rem;
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    max-width: 50rem;
+    margin: 0 auto 2rem;
+    padding: 2rem;
+    border-radius: 8px;
+    background-color: palette.$SURFACE;
+    border: 1px solid palette.$BORDER;
+    border-left: 6px solid palette.$VIOLET-DARK;
+    a {
+      color: palette.$BLUE;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    &-title {
+      margin-bottom: 1rem;
+      font-family: 'Gasoek One', sans-serif;
+      font-size: 1.5rem;
+      color: palette.$VIOLET;
+    }
+    &-content {
+      margin-bottom: 1rem;
+    }
+    &-text {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+      color: palette.$TEXT-DIM;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    &-hr {
+      margin: 1rem 0;
+      border: none;
+      border-top: 1px solid palette.$BORDER;
+    }
+    &-a {
+      color: var(--blue);
+      font-weight: 700;
+      text-decoration: none;
+    }
+  }
+
+}
+
 
 // ---------- Divers ----------
 
