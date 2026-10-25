@@ -128,39 +128,33 @@ body {
     background-color: palette.$SURFACE;
     border: 1px solid palette.$BORDER;
     border-left: 6px solid palette.$VIOLET-DARK;
-    a {
-      color: palette.$BLUE;
-      font-weight: 700;
-      text-decoration: none;
-    }
 
     &-title {
       margin-bottom: 1rem;
-      font-family: 'Gasoek One', sans-serif;
+      font-family: "JetBrains Mono", sans-serif;
       font-size: 1.5rem;
-      color: palette.$VIOLET;
+      color: palette.$TEXT;
     }
+
     &-content {
       margin-bottom: 1rem;
     }
+
     &-text {
       margin-bottom: 1rem;
       line-height: 1.6;
       color: palette.$TEXT-DIM;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 12pt;
     }
+
     &-hr {
       margin: 1rem 0;
-      border: none;
-      border-top: 1px solid palette.$BORDER;
     }
-    &-a {
-      color: var(--blue);
-      font-weight: 700;
-      text-decoration: none;
+
+    transition: border-color 0.2s;
+    &:hover {
+      border-color: palette.$BLUE;
     }
   }
 
@@ -187,4 +181,15 @@ body {
   &:hover {
     background-color: palette.$VIOLET;
   }
+}
+
+.hr {
+  border: none;
+  border-top: 1px solid palette.$BORDER;
+}
+
+.link {
+  color: palette.$BLUE;
+  font-weight: 700;
+  text-decoration: none;
 }

@@ -34,7 +34,7 @@ $cards = array(
     [
         'title' => 'Conception et réalisation du site',
         'content' => [
-            'Pilotage et direction de projet : ANNI Samuel - Enseignant / Maître de conférences à <a href="https://www.univ-amu.fr/fr" target="_blank" rel="noopener noreferrer">Aix Marseille Université.</a>',
+            'Pilotage et direction de projet : ANNI Samuel - Enseignant / Maître de conférences à <a class="infos__link link" href="https://www.univ-amu.fr/fr" target="_blank" rel="noopener noreferrer">Aix Marseille Université.</a>',
             'Conception graphique et UI/UX Design : BARTAL Manal, CHAIB EDDOUR Kawthar, GOUIN Gabriel, SBEGHEN Alexandre.',
             'Développement technique et intégration : BARTAL Manal, CHAIB EDDOUR Kawthar, GOUIN Gabriel, SBEGHEN Alexandre.'
         ],
@@ -42,12 +42,12 @@ $cards = array(
     ],
     [
         'title' => 'Auteurs',
-        'content' => ['Ce site a été conçu et développé par : BARTAL Manal, CHAIB EDDOUR Kawthar, GOUIN Gabriel, SBEGHEN Alexandre dans le cadre d\'un projet pédagogique, en deuxième année de BUT informatique — <a href="https://iut.univ-amu.fr/fr" target="_blank" rel="noopener noreferrer">IUT d\'Aix-Marseille.</a>'],
-        'footer' => 'Contact : <a href="mailto:cybercigales@alwaysdata.net">ateliers-cybersecurite@alwaysdata.net</a>'
+        'content' => ['Ce site a été conçu et développé par : BARTAL Manal, CHAIB EDDOUR Kawthar, GOUIN Gabriel, SBEGHEN Alexandre dans le cadre d\'un projet pédagogique, en deuxième année de BUT informatique — <a class="infos__link link" href="https://iut.univ-amu.fr/fr" target="_blank" rel="noopener noreferrer">IUT d\'Aix-Marseille.</a>'],
+        'footer' => 'Contact : <a class="infos__link link" href="mailto:cybercigales@alwaysdata.net">ateliers-cybersecurite@alwaysdata.net</a>'
     ],
     [
         'title' => 'Hébergeur',
-        'footer' => 'Site hébergé par <a target="_blank" href="https://www.alwaysdata.com/fr/" rel="noopener noreferrer">AlwaysData</a>.'
+        'footer' => 'Site hébergé par <a class="infos__link link" target="_blank" href="https://www.alwaysdata.com/fr/" rel="noopener noreferrer">AlwaysData</a>.'
     ],
     [
         'title' => 'Contenu éditorial et mise à jour',
@@ -68,7 +68,7 @@ foreach ($cards as $card): ?>
                     </div>
 <?php endif; ?>
 <?php if (!is_null($card['footer'])): ?>
-                    <p class="infos_item-text"><?= $card['footer'] ?></p>
+                    <p class="infos__item-text"><?= $card['footer'] ?></p>
 <?php endif ?>
                 </li>
 <?php endforeach; ?>
