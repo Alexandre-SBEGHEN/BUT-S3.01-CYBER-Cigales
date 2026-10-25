@@ -90,7 +90,14 @@ foreach ($links as $name => $href): ?>
      */
     public static function pageFooter(): void { ?>
     <footer>
-
+        <nav>
+            <ul>
+                <li><a href="/">Accueil</a></li>
+                <li><a href="/legal">Mentions légales</a></li>
+                <li><a href="mailto:ateliers-cybersecurite@alwaysdata.net">Contact</a></li>
+            </ul>
+        </nav>
+        <p>©2026 - Ateliers Cybersécurité</p>
     </footer>
 <?php
     }
