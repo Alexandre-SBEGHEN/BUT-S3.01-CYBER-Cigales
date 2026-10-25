@@ -18,8 +18,16 @@
 // ---------- Général ----------
 
 body {
+  display: flex;
+  flex-direction: column;
+  min-block-size: 100vh;
+
   background-color: palette.$BG;
   color: palette.$TEXT;
+}
+
+main {
+  flex: 1;
 }
 
 // ---------- Menu de navigation ----------
@@ -117,7 +125,7 @@ body {
 }
 
 .steps {
-  padding-top: 5rem;
+  padding: 5rem 0;
 
   display: flex;
   flex-direction: column;
