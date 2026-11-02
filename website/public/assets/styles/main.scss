@@ -30,7 +30,7 @@ main {
   flex: 1;
 }
 
-// ---------- Menu de navigation ----------
+// ---------- Menu de navigation / footer ----------
 
 .navbar {
   padding: 2rem 4rem;
@@ -90,6 +90,52 @@ main {
   @include util.mobile {
     padding: 2rem 0.5rem;
     justify-content: center;
+  }
+}
+
+.bottom {
+  padding: 1rem 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 1.25rem;
+
+  background-color: palette.$SURFACE;
+  border-top: solid 1px palette.$BORDER;
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  // Séparation entre les liens
+  &__item + &__item::before {
+    color: palette.$TEXT-DIM;
+    content: "—";
+    padding: 0 1rem;
+  }
+
+  &__link {
+    text-decoration: none;
+
+    &:hover {
+      color: palette.$TEXT;
+      text-decoration: underline;
+    }
+  }
+
+  &__text {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12pt;
+
+    color: palette.$TEXT-DIM;
+
+    &--tiny {
+      font-size: 9pt;
+    }
   }
 }
 
