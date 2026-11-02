@@ -76,6 +76,7 @@ foreach ($cards as $card): ?>
         </section>
     </main>
 <?php
+        TemplateView::pageFooter();
         TemplateView::htmlEnd();
     }
 }
