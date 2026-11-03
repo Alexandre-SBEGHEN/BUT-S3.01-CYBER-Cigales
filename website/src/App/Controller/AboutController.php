@@ -11,10 +11,11 @@ use App\View\AboutView;
  *
  * @author Alexandre SBEGHEN
  */
-class AboutController {
+class AboutController extends Controller {
     public const ROUTABLE = true;
 
     public function execute(): void {
+        parent::execute();
         $view = new AboutView();
         $view->show();
     }

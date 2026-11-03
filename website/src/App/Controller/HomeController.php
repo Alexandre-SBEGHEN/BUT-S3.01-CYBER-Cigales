@@ -11,10 +11,11 @@ use App\View\HomeView;
  *
  * @author Alexandre SBEGHEN
  */
-class HomeController {
+class HomeController extends Controller{
     public const ROUTABLE = true;
 
     public function execute(): void {
+        parent::execute();
         $view = new HomeView();
         $view->show();
     }

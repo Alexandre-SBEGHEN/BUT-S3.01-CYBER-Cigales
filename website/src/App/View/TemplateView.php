@@ -66,8 +66,15 @@ class TemplateView {
      */
     public static function pageHeader(): void { ?>
     <header>
-        <nav>
-
+        <nav class="navbar">
+            <p class="navbar__title">Ateliers CYBER & Crypto</p>
+            <ul class="navbar__list">
+<?php
+$links = array('Accueil' => '/', 'Connexion' => '/login', 'A propos' => '/about');
+foreach ($links as $name => $href): ?>
+                <li class="navbar__item"><a class="navbar__item-link" href="<?= $href ?>"><?= $name ?></a></li>
+<?php endforeach; ?>
+            </ul>
         </nav>
     </header>
 <?php
@@ -82,8 +89,15 @@ class TemplateView {
      * @return void
      */
     public static function pageFooter(): void { ?>
-    <footer>
-
+    <footer class="bottom">
+        <nav class="bottom__nav">
+            <ul class="bottom__list">
+                <li class="bottom__item"><a class="bottom__link bottom__text" href="/">Accueil</a></li>
+                <li class="bottom__item"><a class="bottom__link bottom__text" href="/legal">Mentions légales</a></li>
+                <li class="bottom__item"><a class="bottom__link bottom__text" href="mailto:ateliers-cybersecurite@alwaysdata.net">Contact</a></li>
+            </ul>
+        </nav>
+        <p class="bottom__text bottom__text--tiny">©2026 - Ateliers Cybersécurité</p>
     </footer>
 <?php
     }

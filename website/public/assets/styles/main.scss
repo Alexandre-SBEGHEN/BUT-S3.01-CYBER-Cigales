@@ -1,0 +1,321 @@
+/// main.scss
+///
+/// Style principal
+///
+/// Un seul style par page = un seul
+/// téléchargement = plus rapide.
+///
+/// On garde une cohérence dans la
+/// conception, pas de création de
+/// boutons 100 fois dans pleins de
+/// styles différents.
+///
+/// @author Alexandre SBEGHEN
+
+@use "palette";
+@use "util";
+
+// ---------- Général ----------
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-block-size: 100vh;
+
+  background-color: palette.$BG;
+  color: palette.$TEXT;
+}
+
+main {
+  flex: 1;
+}
+
+// ---------- Menu de navigation / footer ----------
+
+.navbar {
+  padding: 2rem 4rem;
+
+  background-color: palette.$SURFACE;
+  border-bottom: solid 1px palette.$BORDER;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  font-family: "JetBrains Mono", monospace;
+
+  &__title {
+    color: palette.$TEXT;
+    font-size: 16pt;
+    text-align: center;
+    
+    @include util.mobile {
+      display: none;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  &__item {
+
+    &-link {
+      text-decoration: none;
+      font-size: 14pt;
+
+      color: palette.$TEXT;
+
+      text-align: center;
+
+      &--current {
+        color: palette.$TEXT-DIM;
+
+        &::before {
+          content: "> ";
+        }
+      }
+
+      transition: all 0.2s;
+      &:hover {
+        color: palette.$VIOLET;
+      }
+    }
+  }
+
+  @include util.mobile {
+    padding: 2rem 0.5rem;
+    justify-content: center;
+  }
+}
+
+.bottom {
+  padding: 1rem 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 1.25rem;
+
+  background-color: palette.$SURFACE;
+  border-top: solid 1px palette.$BORDER;
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  // Séparation entre les liens
+  &__item + &__item::before {
+    color: palette.$TEXT-DIM;
+    content: "—";
+    padding: 0 1rem;
+  }
+
+  &__link {
+    text-decoration: none;
+
+    &:hover {
+      color: palette.$TEXT;
+      text-decoration: underline;
+    }
+  }
+
+  &__text {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12pt;
+
+    color: palette.$TEXT-DIM;
+
+    &--tiny {
+      font-size: 9pt;
+    }
+  }
+}
+
+// ---------- Page Home ----------
+
+.hero {
+  padding-top: 5rem;
+  margin-bottom: 3rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__title {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: bold;
+    font-size: 32pt;
+  }
+
+  &__text {
+    padding-top: 1rem;
+
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 15pt;
+
+    text-align: center;
+
+    color: palette.$TEXT_DIM;
+  }
+
+  &__button {
+    margin-top: 2rem;
+  }
+}
+
+.steps {
+  padding: 5rem 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__title {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: bold;
+    font-size: 24pt;
+  }
+
+  &__list {
+    padding-top: 2rem;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 1.5rem;
+
+    counter-reset: step;
+  }
+
+  &__item {
+    padding: 3rem 2rem;
+    border-radius: 16px;
+    border: 1px solid palette.$BORDER;
+    background-color: palette.$SURFACE;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    counter-increment: step;
+
+    font-family: "Plus Jakarta Sans", sans-serif;
+
+    transition: border-color 0.2s;
+    &:hover {
+      border-color: palette.$BLUE;
+    }
+
+    &-title {
+      text-align: center;
+      font-weight: bold;
+
+      &::before {
+        content: counter(step) ". ";
+      }
+    }
+
+    &-text {
+      padding-top: 0.5rem;
+      text-align: center;
+      color: palette.$TEXT-DIM;
+    }
+
+    @include util.mobile {
+      padding: 2rem 1rem;
+      max-width: 15rem;
+    }
+  }
+}
+
+// ---------- Page Mentions Légales ----------
+.infos {
+  padding: 0 1rem 4rem;
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    max-width: 50rem;
+    margin: 0 auto 2rem;
+    padding: 2rem;
+    border-radius: 8px;
+    background-color: palette.$SURFACE;
+    border: 1px solid palette.$BORDER;
+    border-left: 6px solid palette.$VIOLET-DARK;
+
+    &-title {
+      margin-bottom: 1rem;
+      font-family: "JetBrains Mono", sans-serif;
+      font-size: 1.5rem;
+      color: palette.$TEXT;
+    }
+
+    &-content {
+      margin-bottom: 1rem;
+    }
+
+    &-text {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+      color: palette.$TEXT-DIM;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 12pt;
+    }
+
+    &-hr {
+      margin: 1rem 0;
+    }
+
+    transition: border-color 0.2s;
+    &:hover {
+      border-color: palette.$BLUE;
+    }
+  }
+
+}
+
+
+// ---------- Divers ----------
+
+.button {
+  padding: 1rem 2rem;
+  border-radius: 24px;
+
+  border: 1px solid palette.$VIOLET;
+  background-color: palette.$VIOLET-DARK;
+  box-shadow: 0 0 16px 2px palette.$VIOLET;
+
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 12pt;
+  font-weight: bold;
+  text-decoration: none;
+  color: palette.$TEXT;
+
+  transition: 0.2s;
+  &:hover {
+    background-color: palette.$VIOLET;
+  }
+}
+
+.hr {
+  border: none;
+  border-top: 1px solid palette.$BORDER;
+}
+
+.link {
+  color: palette.$BLUE;
+  font-weight: 700;
+  text-decoration: none;
+}
