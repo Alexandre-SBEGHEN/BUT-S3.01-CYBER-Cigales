@@ -3,11 +3,9 @@ name: PHPUnit
 on:
   push:
     branches:
+      - 'website/**'
       - main
       - CI
-  pull_request:
-    branches:
-      - main
 
 permissions:
   contents: read
