@@ -47,11 +47,11 @@ class Router {
      * @param string $arg Argument à formater en classe.
      * @return string Chemin vers le contrôleur supposé de la classe.
      *
-     * @see Util::snakeCase2PascalCase()
+     * @see Util::snake2Pascal()
      */
     public static function getControllerFromArg(string $arg): string {
         // Convertir l'argument en PascalCase
-        $className = (empty($arg) ? 'Home' : Util::snakeCase2PascalCase($arg)) . 'Controller';
+        $className = (empty($arg) ? 'Home' : Util::snake2Pascal($arg)) . 'Controller';
         $classPath = 'App\\Controller\\' . $className;
 
         return $classPath;
@@ -83,10 +83,14 @@ class Router {
                 throw new Exception("Unauthorized controller: $class");
 
             // Exécuter le contrôleur de la page
-            $controller = new $class;
+            $method = $this->args[1] ?? '';
+            $args = (!empty($method) && !empty($this->args)) ? $this->args : [];
+            array_shift($args); array_shift($args);
+
+            $controller = new $class($method, $args);
             $controller->execute();
         } catch (Exception) {
-            $controller = new ErrorController(
+            $controller = new ErrorController('', [],
                 404,
                 "Oups... Une erreur est survenue",
                 "La ressource désirée est introuvable."

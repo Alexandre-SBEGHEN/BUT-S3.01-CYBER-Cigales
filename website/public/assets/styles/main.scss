@@ -23,6 +23,7 @@ body {
 
 .hero {
   padding-top: 5rem;
+  margin-bottom: 3rem;
 
   display: flex;
   flex-direction: column;
@@ -109,6 +110,57 @@ body {
   }
 }
 
+// ---------- Page Mentions Légales ----------
+.infos {
+  padding: 0 1rem 4rem;
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    max-width: 50rem;
+    margin: 0 auto 2rem;
+    padding: 2rem;
+    border-radius: 8px;
+    background-color: palette.$SURFACE;
+    border: 1px solid palette.$BORDER;
+    border-left: 6px solid palette.$VIOLET-DARK;
+
+    &-title {
+      margin-bottom: 1rem;
+      font-family: "JetBrains Mono", sans-serif;
+      font-size: 1.5rem;
+      color: palette.$TEXT;
+    }
+
+    &-content {
+      margin-bottom: 1rem;
+    }
+
+    &-text {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+      color: palette.$TEXT-DIM;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 12pt;
+    }
+
+    &-hr {
+      margin: 1rem 0;
+    }
+
+    transition: border-color 0.2s;
+    &:hover {
+      border-color: palette.$BLUE;
+    }
+  }
+
+}
+
+
 // ---------- Divers ----------
 
 .button {
@@ -129,4 +181,15 @@ body {
   &:hover {
     background-color: palette.$VIOLET;
   }
+}
+
+.hr {
+  border: none;
+  border-top: 1px solid palette.$BORDER;
+}
+
+.link {
+  color: palette.$BLUE;
+  font-weight: 700;
+  text-decoration: none;
 }
