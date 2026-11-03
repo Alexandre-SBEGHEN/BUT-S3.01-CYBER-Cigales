@@ -15,7 +15,7 @@ namespace App\Core;
  * @author Alexandre SBEGHEN
  */
 class Init {
-    private static string $rootDir;
+    // private static string $rootDir;
     private static ?Env $env;
 
     /**
@@ -31,7 +31,7 @@ class Init {
      */
     public static function init(string $rootDir, string $envPath): int {
         // Initialisation des variables globales
-        self::$rootDir = $rootDir;
+        // self::$rootDir = $rootDir;
         self::$env = null;
 
         // Parsing du .env
