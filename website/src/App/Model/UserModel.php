@@ -29,6 +29,31 @@ class UserModel
         }
     }
 
+
+    public function findBy (string $column, string $value){
+
+        $allowedColumns = ['mail', 'user_id'];
+
+        if (!in_array($column, $allowedColumns, true)) {
+            throw new \InvalidArgumentException("Colonne de recherche non autorisée : " . $column);
+        }
+
+        $pdo = init::getPDO();
+        $sql = "SELECT * FROM user WHERE $column = :value LIMIT 1";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindValue('value', $value, \PDO::PARAM_STR);
+
+
+        try {
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $result ?: null;
+        } catch (PDOException $e) {
+            error_log('Erreur findBy : ' . $e->getMessage());
+            return null;
+        }
+    }
+
     /**
      * Recherche un utilisateur par son adresse mail.
      */
