@@ -1,7 +1,6 @@
 <?php
 
-namespace modules\views;
-
+namespace App\View\User;
 class ForgotPasswordView {
     public function show(): void {
         template_view::html_begin(

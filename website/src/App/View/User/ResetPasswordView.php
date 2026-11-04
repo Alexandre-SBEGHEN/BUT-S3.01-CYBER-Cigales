@@ -1,7 +1,6 @@
 <?php
 
-namespace modules\views;
-
+namespace App\View\User;
 class ResetPasswordView {
 
     public function show(string $token): void {

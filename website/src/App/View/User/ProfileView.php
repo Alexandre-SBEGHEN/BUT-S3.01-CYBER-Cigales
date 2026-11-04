@@ -8,7 +8,8 @@
  *
  * &author Kawthar CHAIB EDDOUR
  */
-namespace modules\views;
+
+namespace App\View\User;
 
 class ProfileView {
     /**

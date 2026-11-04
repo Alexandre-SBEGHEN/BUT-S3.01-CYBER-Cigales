@@ -1,5 +1,6 @@
 <?php
-namespace modules\views;
+
+namespace App\View\User;
 
 class DeleteAccountView{
     public function show():void{

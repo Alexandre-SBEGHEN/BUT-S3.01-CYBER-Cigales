@@ -2,15 +2,12 @@
 
 namespace App\Controller;
 
-
 use App\Model\UserModel;
-
 class UserController extends Controller
 {
     public const ROUTABLE = true;
 
-    public function requestAuthentification(array $args): void
-    {
+    public function requestAuthentification(array $args): void {
         $mail = trim($_POST["mail"] ?? '');
         if (empty($mail)) {
             $_SESSION["error"] = "Merci de remplir l'email.";
@@ -58,15 +55,12 @@ class UserController extends Controller
 
         header('Location: /profile');
         exit;
-
     }
 
-    public function requestLogin(array $args): void
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    public function requestLogin(array $args): void {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST')
             $this->requestAuthentification($args);
-            return;
-        }
+
         (new \App\View\User\LoginView())->show();
     }
 
@@ -282,15 +276,5 @@ class UserController extends Controller
 
             (new \App\View\User\ResetPasswordView())->show($token);
     }
-
-
-
-
-
-
-
-
-
-
 }
 
