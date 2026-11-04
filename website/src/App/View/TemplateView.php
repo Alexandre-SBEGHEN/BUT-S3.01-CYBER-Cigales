@@ -69,11 +69,9 @@ class TemplateView {
         <nav class="navbar">
             <p class="navbar__title">Ateliers CYBER & Crypto</p>
             <ul class="navbar__list">
-<?php
-$links = array('Accueil' => '/', 'Connexion' => '/login', 'A propos' => '/about');
-foreach ($links as $name => $href): ?>
-                <li class="navbar__item"><a class="navbar__item-link" href="<?= $href ?>"><?= $name ?></a></li>
-<?php endforeach; ?>
+                <li class="navbar__item"><a class="navbar__item-link" href="/">Accueil</a></li>
+                <li class="navbar__item"><a class="navbar__item-link" href="/login">Connexion</a></li>
+                <li class="navbar__item"><a class="navbar__item-link" href="/minigames">Mini-jeux</a></li>
             </ul>
         </nav>
     </header>
