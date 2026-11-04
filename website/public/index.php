@@ -22,5 +22,8 @@ Init::init(dirname(__DIR__), dirname(__DIR__) . '/.env');
 // Routage
 $path = trim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?? '', '/') ?: '/';
 $parts = explode('/', $path);
-$router = new Router($parts);
+$otherRoutes = array(
+    'login' => ['user', 'login'],
+);
+$router = new Router($parts, $otherRoutes);
 $router->execute();

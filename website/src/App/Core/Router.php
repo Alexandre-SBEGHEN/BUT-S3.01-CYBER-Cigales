@@ -19,11 +19,8 @@ use Exception;
  * @author SBEGHEN Alexandre
  */
 class Router {
-    private array $args;
 
-    public function __construct(array $args) {
-        $this->args = $args;
-    }
+    public function __construct(private array $args, private array $manualRoutes) {}
 
     /**
      * Formate une string pour obtenir
@@ -75,6 +72,13 @@ class Router {
      */
     public function execute(): void {
         try {
+            //Redirection manuelle de classes
+            $key = $this->args[0];
+            if (array_key_exists($key, $this->manualRoutes)) {
+                array_shift($this->args);
+                $this->args = array_merge($this->manualRoutes[$key], $this->args);
+            }
+
             // Erreur si la classe n'existe pas ou si le contrôleur n'est pas routable
             $class = $this->getControllerFromArg($this->args[0]);
             if (!class_exists($class))
