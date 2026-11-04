@@ -13,6 +13,8 @@
     <img alt="License" src="https://img.shields.io/github/license/Alexandre-SBEGHEN/BUT-S3.01-CYBER-Cigales?v=2">
     <img alt="Repo Size" src="https://img.shields.io/github/repo-size/Alexandre-SBEGHEN/BUT-S3.01-CYBER-Cigales?v=2">
     <a href="https://www.codefactor.io/repository/github/alexandre-sbeghen/but-s3.01-cyber-cigales"><img src="https://www.codefactor.io/repository/github/alexandre-sbeghen/but-s3.01-cyber-cigales/badge" alt="CodeFactor" /></a>
+    <img alt="PHPStan" src="https://github.com/Alexandre-SBEGHEN/BUT-S3.01-CYBER-Cigales/actions/workflows/phpstan.yml/badge.svg">
+    <img alt="PHPUnit" src="https://github.com/Alexandre-SBEGHEN/BUT-S3.01-CYBER-Cigales/actions/workflows/phpunit.yml/badge.svg">
 </div>
 
 ---
