@@ -34,7 +34,7 @@ class ErrorView {
         <section class="hero">
             <h1 class="hero__title"><?= $this->errorMessage ?> </h1>
             <p class="hero__text"><?= $this->errorDescription ?></p>
-            <a class="hero__button button" href="/.">Retour à l'accueil</a>
+            <a class="hero__button button" href="/">Retour à l'accueil</a>
         </section>
     </main>
 <?php
