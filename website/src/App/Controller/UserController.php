@@ -209,13 +209,14 @@ class UserController extends Controller
                 }
 
                 $user_repository = new UserModel();
+                $token_repository = new TokenModel();
                 $user = $user_repository->findEmail($mail);
 
                 // Message générique de sécurité
                 $_SESSION["success"] = "Si cet email est associé à un compte, un lien de réinitialisation a été généré.";
 
                 if ($user !== null) {
-                    $token = $user_repository->createToken($user['user_id']);
+                    $token = $token_repository->createToken($user['user_id']);
 
                     if ($token !== false) {
                         $resetLink = 'http://' . $_SERVER['HTTP_HOST'] . '/reset-password?token=' . $token;
@@ -241,6 +242,7 @@ class UserController extends Controller
             }
 
             $user_repository = new UserModel();
+            $token_repository = new TokenModel();
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $password = $_POST['password'] ?? '';
@@ -252,7 +254,7 @@ class UserController extends Controller
                     exit;
                 }
 
-                $userId = $user_repository->findToken($token);
+                $userId = $token_repository->findToken($token);
 
                 if ($userId === null) {
                     $_SESSION['error'] = "Lien invalide ou expiré.";
@@ -261,7 +263,7 @@ class UserController extends Controller
                 }
 
                 $user_repository->changePassword($userId, $password);
-                $user_repository->deleteToken($userId);
+                $token_repository->deleteToken($userId);
 
                 $_SESSION['success'] = "Mot de passe modifié avec succès.";
                 header('Location: login');
