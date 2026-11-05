@@ -26,3 +26,7 @@
 **Alexandre :** J'ai terminé le header et le footer du site web, avec les styles CSS. J'ai également implémenté les CI qui permettent de valider ou non un code automatiquement avant qu'il soit merge. J'aimerais apporter des modifications à certains styles telles que l'alignement de texte des sections hero, et ajouter une page d'erreur 404.
 
 **Gabriel :** Je vais m'occuper de l'alignement concernant le texte du titre qui parfois peut s'afficher sur le côté.
+
+### 5 novembre 2026
+
+**Alexandre :** J'ai fait la première mise en prod. Le site est fonctionnel, les pages s'affichent correctement.
