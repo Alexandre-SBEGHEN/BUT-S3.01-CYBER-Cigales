@@ -31,4 +31,4 @@
 
 **Alexandre :** J'ai fait la première mise en prod. Le site est fonctionnel, les pages s'affichent correctement.
 
-**Kawthar :** J'ai modifier le HTML de la page erreur et j'ai ajouter le footer et header et le lien vers le fichier css.
+**Kawthar :** J'ai modifié le HTML de la page erreur et j'ai ajouté le footer et header et le lien vers le fichier css.
