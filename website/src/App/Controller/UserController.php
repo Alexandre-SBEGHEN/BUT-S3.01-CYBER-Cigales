@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\UserModel;
+use App\Model\TokenModel;
 class UserController extends Controller
 {
     public const ROUTABLE = true;

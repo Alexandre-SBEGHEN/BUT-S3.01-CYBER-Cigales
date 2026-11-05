@@ -16,13 +16,12 @@ class ProfileView {
      * affiche la page profil de l'utilisateur
      * @return void
      */
-    public function show(\modules\models\user_model $user): void {
+    public function show(array $user): void {
 
-
-        $username = htmlspecialchars($user->getPrenom(), ENT_QUOTES, 'UTF-8');
-        $nom = htmlspecialchars($user->getNom(), ENT_QUOTES, 'UTF-8');
-        $mail = htmlspecialchars($user->getAdresseMail(), ENT_QUOTES, 'UTF-8');
-        $date = htmlspecialchars($user->getDateCreation(), ENT_QUOTES, 'UTF-8');
+        $username = htmlspecialchars($user['first_name'] ?? '', ENT_QUOTES, 'UTF-8');
+        $nom      = htmlspecialchars($user['last_name'] ?? '', ENT_QUOTES, 'UTF-8');
+        $mail     = htmlspecialchars($user['mail'] ?? '', ENT_QUOTES, 'UTF-8');
+        $date     = htmlspecialchars($user['created_date'] ?? '', ENT_QUOTES, 'UTF-8');
 
 
         template_view::html_begin(
