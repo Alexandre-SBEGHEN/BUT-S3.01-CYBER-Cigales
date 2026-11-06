@@ -11,7 +11,7 @@ class LoginView {
             "Page de connexion à Cyber Cigales",
             ["reset.css", "fonts.css", "main.css"]
         );
-        TemplateView::pageHeader('login'); ?>
+        TemplateView::pageHeader(); ?>
     <main class="auth-page">
         <section class="auth-box">
             <h1>Connexion</h1>

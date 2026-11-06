@@ -10,6 +10,7 @@
  */
 
 namespace App\View\User;
+use App\View\TemplateView;
 
 class ProfileView {
     /**
@@ -24,12 +25,12 @@ class ProfileView {
         $date     = htmlspecialchars($user['created_date'] ?? '', ENT_QUOTES, 'UTF-8');
 
 
-        template_view::html_begin(
+        TemplateView::htmlBegin(
             'Profil - Cyber Cigales',
             'page profile de l utilisateur',
             ['reset.css','fonts.css', 'header.css', 'footer.css', 'profile.css']
         );
-        template_view::page_header('profile');
+        TemplateView::pageHeader('profile');
         echo <<< HTML
         <main class="profil">
         <h1 class="title">Mon profil</h1>
@@ -71,7 +72,7 @@ class ProfileView {
         </main>
 HTML;
 
-        template_view::page_footer();
-        template_view::html_end();
+        TemplateView::pageFooter();
+        TemplateView::htmlEnd();
     }
 }

@@ -11,7 +11,7 @@ class RegisterView {
             'Page d\'inscription à Cyber Cigales',
             ['reset.css', 'fonts.css', 'main.css']
         );
-        TemplateView::pageHeader('register'); ?>
+        TemplateView::pageHeader(); ?>
     <main class="auth-page">
         <section class="auth-box">
             <h1>Inscription</h1>

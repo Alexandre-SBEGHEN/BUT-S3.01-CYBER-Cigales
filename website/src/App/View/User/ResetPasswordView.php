@@ -1,15 +1,16 @@
 <?php
 
 namespace App\View\User;
+use App\View\TemplateView;
 class ResetPasswordView {
 
     public function show(string $token): void {
-        template_view::html_begin(
+        TemplateView::htmlBegin(
             title: 'Réinitialisation du mot de passe',
             description: 'Choisissez un nouveau mot de passe',
-            css_names: ['reset.css', 'header.css', 'footer.css']
+            cssNames: ['reset.css', 'header.css', 'footer.css']
         );
-        template_view::page_header();
+        TemplateView::pageHeader();
 
         if (isset($_SESSION['error'])) {
             echo "<p class='error'>" . htmlspecialchars($_SESSION['error']) . "</p>";
@@ -32,7 +33,7 @@ class ResetPasswordView {
 </div>
 HTML;
 
-        template_view::page_footer();
-        template_view::html_end();
+        TemplateView::pageFooter();
+        TemplateView::htmlEnd();
     }
 }

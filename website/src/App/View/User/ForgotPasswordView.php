@@ -1,14 +1,15 @@
 <?php
 
 namespace App\View\User;
+use App\View\TemplateView;
 class ForgotPasswordView {
     public function show(): void {
-        template_view::html_begin(
+        TemplateView::htmlBegin(
             title: 'Mot de passe oublié',
             description: 'Page du mdp oublié',
-            css_names: ['reset.css','fonts.css', 'header.css', 'footer.css']
+            cssNames: ['reset.css','fonts.css', 'header.css', 'footer.css']
         );
-        template_view::page_header('forgotpassword');
+        TemplateView::pageHeader('forgotpassword');
 
         if (isset($_SESSION['error'])) {
             echo "<p class='error'>" . htmlspecialchars($_SESSION['error']) . "</p>";
@@ -31,7 +32,7 @@ class ForgotPasswordView {
 </div>
 HTML;
 
-        template_view::page_footer();
-        template_view::html_end();
+        TemplateView::pageFooter();
+        TemplateView::htmlEnd();
     }
 }

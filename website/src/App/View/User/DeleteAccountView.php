@@ -1,15 +1,16 @@
 <?php
 
 namespace App\View\User;
+use App\View\TemplateView;
 
 class DeleteAccountView{
     public function show():void{
-        template_view::html_begin(
+        TemplateView::htmlBegin(
             'Supprimer mon compte',
             'Confirmation de la suppression de ton compte',
             ['reset.css', 'fonts.css','header.css','footer.css','delete_account.css'],
         );
-        template_view::page_header();
+        TemplateView::pageHeader();
 
         echo <<< HTML
     <main class="delete-account">
@@ -23,7 +24,7 @@ class DeleteAccountView{
         <a href="/profile"> Non, annuler </a>
     </main>
 HTML;
-        template_view::page_footer();
-        template_view::html_end();
+        TemplateView::pageFooter();
+        TemplateView::htmlEnd();
     }
 }

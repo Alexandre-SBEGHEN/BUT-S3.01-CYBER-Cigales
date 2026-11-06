@@ -18,6 +18,10 @@ class Init {
     // private static string $rootDir;
     private static ?Env $env;
 
+    private static \PDO $PDO;
+
+    private static bool $databaseConnected;
+
     /**
      * Initialisation du site web.
      *
@@ -42,6 +46,20 @@ class Init {
         // Niveau d'activation des erreurs et warnings
         error_reporting(self::$env->getPhpErrorReporting());
 
+        $servername = self::$env->getConfig('database', 'host');
+        $dbname     = self::$env->getConfig('database', 'dbname');
+        $username   = self::$env->getConfig('database', 'username');
+        $password   = self::$env->getConfig('database', 'password');
+
+        try {
+            self::$PDO = new \PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            self::$databaseConnected = true;
+        } catch (\PDOException $e) {
+            self::$PDO = null;
+            self::$databaseConnected = false;
+            throw new \Exception("Erreur de connexion à la base de données : " . $e->getMessage());
+        }
+
         return 0;
     }
 
@@ -52,5 +70,13 @@ class Init {
      */
     public static function getEnv(): Env {
         return self::$env;
+    }
+
+    public static function getPDO(): ?\PDO {
+        return self::$PDO;
+    }
+
+    public static function isDatabaseConnected(): bool {
+        return self::$databaseConnected;
     }
 }
