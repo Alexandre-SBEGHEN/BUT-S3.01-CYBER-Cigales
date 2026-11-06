@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-use src\App\Core\init;
+use App\Core\Init;
 use PDO;
 use PDOException;
 
@@ -12,7 +12,7 @@ class UserModel
      * Crée un nouvel utilisateur.
      */
     public function create(string $lastName, string $firstName, string $mail, string $password): bool {
-        $pdo = init::getPDO();
+        $pdo = Init::getPDO();
         $sql = 'INSERT INTO utilisateur (last_name, first_name, password_hash, mail, created_date) 
                 VALUES (:last_name, :first_name, :password_hash, :mail, NOW())';
         $stmt = $pdo->prepare($sql);
@@ -38,7 +38,7 @@ class UserModel
             throw new \InvalidArgumentException("Colonne de recherche non autorisée : " . $column);
         }
 
-        $pdo = init::getPDO();
+        $pdo = Init::getPDO();
         $sql = "SELECT * FROM user WHERE $column = :value LIMIT 1";
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue('value', $value, \PDO::PARAM_STR);
@@ -58,7 +58,7 @@ class UserModel
      * Recherche un utilisateur par son adresse mail.
      */
     public function findEmail(string $mail): ?array {
-        $pdo = init::getPDO();
+        $pdo = Init::getPDO();
         $sql = 'SELECT * FROM utilisateur WHERE mail = :mail';
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue('mail', $mail, PDO::PARAM_STR);
@@ -77,7 +77,7 @@ class UserModel
      * Recherche un utilisateur par son ID.
      */
     public function findID(int $id): ?array {
-        $pdo = init::getPDO();
+        $pdo = Init::getPDO();
         $sql = 'SELECT * FROM utilisateur WHERE user_id = :id';
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue('id', $id, PDO::PARAM_INT);
@@ -96,7 +96,7 @@ class UserModel
      * Modifie le mot de passe d'un utilisateur.
      */
     public function changePassword(int $id, string $password): bool {
-        $pdo = init::getPDO();
+        $pdo = Init::getPDO();
         $sql = 'UPDATE utilisateur SET password_hash = :password_hash WHERE user_id = :id';
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue('id', $id, PDO::PARAM_INT);
@@ -114,7 +114,7 @@ class UserModel
      * Supprime un utilisateur de la base de données.
      */
     public function deleteUser(int $id): bool {
-        $pdo = init::getPDO();
+        $pdo = Init::getPDO();
         $sql = 'DELETE FROM utilisateur WHERE user_id = :id';
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue('id', $id, PDO::PARAM_INT);

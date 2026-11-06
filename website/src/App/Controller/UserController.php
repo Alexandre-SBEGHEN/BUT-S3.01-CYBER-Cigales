@@ -270,7 +270,7 @@ class UserController extends Controller
                 exit;
             }
 
-            $userId = $user_repository->findToken($token);
+            $userId = $token_repository->findToken($token);
             if ($userId === null) {
                 $_SESSION['error'] = "Lien invalide ou expiré.";
                 header('Location: forgotpassword');

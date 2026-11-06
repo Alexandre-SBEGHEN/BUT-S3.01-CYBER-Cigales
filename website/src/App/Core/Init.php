@@ -2,6 +2,8 @@
 
 namespace App\Core;
 
+use PDO;
+
 /**
  * Init.php
  *
@@ -18,7 +20,7 @@ class Init {
     // private static string $rootDir;
     private static ?Env $env;
 
-    private static \PDO $PDO;
+    private static ?PDO $PDO = null;
 
     private static bool $databaseConnected;
 

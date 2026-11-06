@@ -9,7 +9,7 @@ class ForgotPasswordView {
             description: 'Page du mdp oublié',
             cssNames: ['reset.css','fonts.css', 'header.css', 'footer.css']
         );
-        TemplateView::pageHeader('forgotpassword');
+        TemplateView::pageHeader();
 
         if (isset($_SESSION['error'])) {
             echo "<p class='error'>" . htmlspecialchars($_SESSION['error']) . "</p>";

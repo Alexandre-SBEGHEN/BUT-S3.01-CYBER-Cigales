@@ -30,7 +30,7 @@ class ProfileView {
             'page profile de l utilisateur',
             ['reset.css','fonts.css', 'header.css', 'footer.css', 'profile.css']
         );
-        TemplateView::pageHeader('profile');
+        TemplateView::pageHeader();
         echo <<< HTML
         <main class="profil">
         <h1 class="title">Mon profil</h1>
