@@ -131,6 +131,106 @@ class UserController extends Controller
         (new \App\View\User\RegisterView())->show();
     }
 
+    public function requestProfile(array $args): void
+    {
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: /login');
+            exit;
+        }
+        (new \App\View\User\ProfileView())->show($_SESSION['user']);
+    }
+
+    public function requestForgotPassword(array $args): void
+    {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $mail = trim($_POST["mail"] ?? '');
+
+                if (empty($mail)) {
+                    $_SESSION["error"] = "Merci de remplir l'email.";
+                    header('Location: /forgot-password');
+                    exit;
+                }
+
+                if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+                    $_SESSION["error"] = "Adresse email invalide.";
+                    header('Location: /forgot-password');
+                    exit;
+                }
+
+                $user_repository = new UserModel();
+                $token_repository = new TokenModel();
+                $user = $user_repository->findEmail($mail);
+
+                // Message générique de sécurité
+                $_SESSION["success"] = "Si cet email est associé à un compte, un lien de réinitialisation a été généré.";
+
+                if ($user !== null) {
+                    $token = $token_repository->createToken($user['user_id']);
+
+                    if ($token !== false) {
+                        $resetLink = 'http://' . $_SERVER['HTTP_HOST'] . '/reset-password?token=' . $token;
+                        $subject = 'Réinitialisation de votre mot de passe';
+                        $message = "Bonjour,\n\nVoici votre lien de réinitialisation (valide 10 minutes) :\n$resetLink\n\nSi vous n'êtes pas à l'origine de cette demande, ignorez cet email.";
+
+                        \App\Core\Mailer::send($mail, $subject, $message);
+                    }
+                }
+
+                header('Location: /forgot-password');
+                exit;
+            }
+
+            (new \App\View\User\ForgotPasswordView())->show();
+    }
+
+    public function requestResetPassword(array $args): void{
+
+            $token = trim($_GET['token'] ?? $_POST['token'] ?? '');
+
+            if (empty($token)) {
+                header('Location: /login');
+                exit;
+            }
+
+            $user_repository = new UserModel();
+            $token_repository = new TokenModel();
+
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $password = $_POST['password'] ?? '';
+                $passwordConfirm = $_POST['password_confirm'] ?? '';
+
+                if (empty($password) || $password !== $passwordConfirm) {
+                    $_SESSION['error'] = "Les mots de passe ne correspondent pas.";
+                    header('Location: reset-password?token=' . $token);
+                    exit;
+                }
+
+                $userId = $token_repository->findToken($token);
+
+                if ($userId === null) {
+                    $_SESSION['error'] = "Lien invalide ou expiré.";
+                    header('Location: /forgot-password');
+                    exit;
+                }
+
+                $user_repository->changePassword($userId, $password);
+                $token_repository->deleteToken($userId);
+
+                $_SESSION['success'] = "Mot de passe modifié avec succès.";
+                header('Location: /login');
+                exit;
+            }
+
+            $userId = $token_repository->findToken($token);
+            if ($userId === null) {
+                $_SESSION['error'] = "Lien invalide ou expiré.";
+                header('Location: /forgot-password');
+                exit;
+            }
+
+            (new \App\View\User\ResetPasswordView())->show($token);
+    }
+
     private function processRegister(): void
     {
         $prenom = trim($_POST['prenom'] ?? '');
@@ -180,104 +280,6 @@ class UserController extends Controller
             header('Location: /register');
             exit;
         }
-    }
-
-    public function requestProfile(array $args): void
-    {
-        if (!isset($_SESSION['user_id'])) {
-            header('Location: /login');
-            exit;
-        }
-        (new \App\View\User\ProfileView())->show($_SESSION['user']);
-    }
-
-    public function requestForgotPassword(array $args): void
-    {
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $mail = trim($_POST["mail"] ?? '');
-
-                if (empty($mail)) {
-                    $_SESSION["error"] = "Merci de remplir l'email.";
-                    header('Location: forgotpassword');
-                    exit;
-                }
-
-                if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-                    $_SESSION["error"] = "Adresse email invalide.";
-                    header('Location: forgotpassword');
-                    exit;
-                }
-
-                $user_repository = new UserModel();
-                $token_repository = new TokenModel();
-                $user = $user_repository->findEmail($mail);
-
-                // Message générique de sécurité
-                $_SESSION["success"] = "Si cet email est associé à un compte, un lien de réinitialisation a été généré.";
-
-                if ($user !== null) {
-                    $token = $token_repository->createToken($user['user_id']);
-
-                    if ($token !== false) {
-                        $resetLink = 'http://' . $_SERVER['HTTP_HOST'] . '/reset-password?token=' . $token;
-                        $subject = 'Réinitialisation de votre mot de passe';
-                        $message = "Bonjour,\n\nVoici votre lien de réinitialisation (valide 10 minutes) :\n$resetLink\n\nSi vous n'êtes pas à l'origine de cette demande, ignorez cet email.";
-                    }
-                }
-
-                header('Location: forgotpassword');
-                exit;
-            }
-
-            (new \App\View\User\ForgotPasswordView())->show();
-    }
-
-    public function requestResetPassword(array $args): void{
-
-            $token = trim($_GET['token'] ?? $_POST['token'] ?? '');
-
-            if (empty($token)) {
-                header('Location: login');
-                exit;
-            }
-
-            $user_repository = new UserModel();
-            $token_repository = new TokenModel();
-
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $password = $_POST['password'] ?? '';
-                $passwordConfirm = $_POST['password_confirm'] ?? '';
-
-                if (empty($password) || $password !== $passwordConfirm) {
-                    $_SESSION['error'] = "Les mots de passe ne correspondent pas.";
-                    header('Location: reset-password?token=' . $token);
-                    exit;
-                }
-
-                $userId = $token_repository->findToken($token);
-
-                if ($userId === null) {
-                    $_SESSION['error'] = "Lien invalide ou expiré.";
-                    header('Location: forgotpassword');
-                    exit;
-                }
-
-                $user_repository->changePassword($userId, $password);
-                $token_repository->deleteToken($userId);
-
-                $_SESSION['success'] = "Mot de passe modifié avec succès.";
-                header('Location: login');
-                exit;
-            }
-
-            $userId = $token_repository->findToken($token);
-            if ($userId === null) {
-                $_SESSION['error'] = "Lien invalide ou expiré.";
-                header('Location: forgotpassword');
-                exit;
-            }
-
-            (new \App\View\User\ResetPasswordView())->show($token);
     }
 }
 

@@ -13,7 +13,7 @@ class UserModel
      */
     public function create(string $lastName, string $firstName, string $mail, string $password): bool {
         $pdo = Init::getPDO();
-        $sql = 'INSERT INTO utilisateur (last_name, first_name, password_hash, mail, created_date) 
+        $sql = 'INSERT INTO user (last_name, first_name, password_hash, mail, created_date) 
                 VALUES (:last_name, :first_name, :password_hash, :mail, NOW())';
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue('last_name', $lastName, PDO::PARAM_STR);
@@ -59,7 +59,7 @@ class UserModel
      */
     public function findEmail(string $mail): ?array {
         $pdo = Init::getPDO();
-        $sql = 'SELECT * FROM utilisateur WHERE mail = :mail';
+        $sql = 'SELECT * FROM user WHERE mail = :mail';
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue('mail', $mail, PDO::PARAM_STR);
 
@@ -78,7 +78,7 @@ class UserModel
      */
     public function findID(int $id): ?array {
         $pdo = Init::getPDO();
-        $sql = 'SELECT * FROM utilisateur WHERE user_id = :id';
+        $sql = 'SELECT * FROM user WHERE user_id = :id';
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue('id', $id, PDO::PARAM_INT);
 
@@ -97,7 +97,7 @@ class UserModel
      */
     public function changePassword(int $id, string $password): bool {
         $pdo = Init::getPDO();
-        $sql = 'UPDATE utilisateur SET password_hash = :password_hash WHERE user_id = :id';
+        $sql = 'UPDATE user SET password_hash = :password_hash WHERE user_id = :id';
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue('id', $id, PDO::PARAM_INT);
         $stmt->bindValue('password_hash', password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR);

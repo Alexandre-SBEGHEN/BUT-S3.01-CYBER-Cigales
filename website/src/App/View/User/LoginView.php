@@ -21,7 +21,7 @@ class LoginView {
                 <?php unset($_SESSION['error']); ?>
             </div>
 <?php endif; ?>
-            <form action="/user/login" method="POST" class="auth-form">
+            <form action="/login" method="POST" class="auth-form">
                 <div class="field">
                     <label for="mail">Adresse e-mail</label>
                     <input type="email" id="mail" name="mail" required placeholder="votre.email@exemple.fr">
@@ -33,12 +33,12 @@ class LoginView {
                 </div>
 
                 <div class="pass-forgot">
-                    <a href="/user/forgot-password">Mot de passe oublié ?</a>
+                    <a href="/forgot-password">Mot de passe oublié ?</a>
                 </div>
 
                 <button type="submit" class="submit-btn">Se connecter</button>
             </form>
-            <p class="bottom-link">Pas encore de compte ? <a href="/user/register">S'inscrire</a></p>
+            <p class="bottom-link">Pas encore de compte ? <a href="/register">S'inscrire</a></p>
         </section>
     </main>
 <?php

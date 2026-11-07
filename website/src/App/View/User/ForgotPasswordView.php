@@ -24,7 +24,7 @@ class ForgotPasswordView {
         echo <<< HTML
 <div class="container">
     <h1>Mot de passe oublié</h1>
-    <form action="forgotpassword" method="POST">
+    <form action="/forgot-password" method="POST">
         <input type="email" name="mail" placeholder="email" required>
         <br>
         <button type="submit" name="submit">Envoyer le lien</button>

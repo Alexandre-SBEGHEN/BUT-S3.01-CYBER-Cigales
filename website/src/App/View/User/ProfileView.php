@@ -64,7 +64,7 @@ class ProfileView {
         </section>
         <section class="logout">
                 <a class="btn" href="/logout">Se déconnecter</a>
-                <a class="btn" href="/delete_account">Supprimer mon compte</a>
+                <a class="btn" href="/delete-account">Supprimer mon compte</a>
               
                
         </section>

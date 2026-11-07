@@ -21,7 +21,7 @@ class RegisterView {
                 <?php unset($_SESSION['error']); ?>
             </div>
 <?php endif; ?>
-            <form action="/user/register" method="POST" class="auth-form">
+            <form action="/register" method="POST" class="auth-form">
                 <div class="field">
                     <label for="nom">Nom</label>
                     <input type="text" id="nom" name="nom" required placeholder="Votre nom">
@@ -40,7 +40,7 @@ class RegisterView {
                 </div>
                 <button type="submit" class="submit-btn">S'inscrire</button>
             </form>
-            <p class="bottom-link">Déjà un compte ? <a href="/user/login">Se connecter</a></p>
+            <p class="bottom-link">Déjà un compte ? <a href="/login">Se connecter</a></p>
         </section>
     </main>
 <?php

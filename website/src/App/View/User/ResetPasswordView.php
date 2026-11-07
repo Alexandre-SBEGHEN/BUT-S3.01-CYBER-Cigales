@@ -22,7 +22,7 @@ class ResetPasswordView {
         echo <<< HTML
 <div class="container">
     <h1>Nouveau mot de passe</h1>
-    <form action="reset-password" method="POST">
+    <form action="/reset-password" method="POST">
         <input type="hidden" name="token" value="$safeToken">
         <input type="password" name="password" placeholder="Nouveau mot de passe" required>
         <br>
