@@ -13,7 +13,7 @@ class ResetPasswordView {
         TemplateView::pageHeader();
 
         if (isset($_SESSION['error'])) {
-            echo "<p class='error'>" . htmlspecialchars($_SESSION['error']) . "</p>";
+            echo "<p class='error'>" . htmlspecialchars($_SESSION['error']) . "</p>\n";
             unset($_SESSION['error']);
         }
 

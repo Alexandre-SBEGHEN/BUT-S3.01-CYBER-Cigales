@@ -12,12 +12,12 @@ class ForgotPasswordView {
         TemplateView::pageHeader();
 
         if (isset($_SESSION['error'])) {
-            echo "<p class='error'>" . htmlspecialchars($_SESSION['error']) . "</p>";
+            echo "<p class='error'>" . htmlspecialchars($_SESSION['error']) . "</p>\n";
             unset($_SESSION['error']);
         }
 
         if (isset($_SESSION['success'])) {
-            echo "<p class='success'>" . htmlspecialchars($_SESSION['success']) . "</p>";
+            echo "<p class='success'>" . htmlspecialchars($_SESSION['success']) . "</p>\n";
             unset($_SESSION['success']);
         }
 

@@ -42,23 +42,23 @@ class ProfileView {
             <h3>Mes informations</h3>
             <ul class="cards">
                 <li>
-                <h3>Nom</h3>
-                <p>{$nom}</p>
+                    <h3>Nom</h3>
+                    <p>{$nom}</p>
                 </li>
                 
                 <li>
-                <h3>Prénom</h3>
-                <p>{$username}</p>
+                    <h3>Prénom</h3>
+                    <p>{$username}</p>
                 </li>
                 
                 <li>
-                <h3>Adresse mail</h3>
-                <p>{$mail}</p>
+                    <h3>Adresse mail</h3>
+                    <p>{$mail}</p>
                 </li>
                 
                 <li>
-                <h3>Membre depuis</h3>
-                <p>{$date}</p>
+                    <h3>Membre depuis</h3>
+                    <p>{$date}</p>
                 </li>
             </ul>
         </section>
