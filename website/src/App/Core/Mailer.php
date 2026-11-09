@@ -5,8 +5,24 @@ namespace App\Core;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+/**
+ * Mailer.php
+ *
+ * Envoi d'e-mails par SMTP avec PHPMailer.
+ * Les paramètres de connexion sont lus dans la section [smtp] du .env.
+ */
 class Mailer
 {
+    /**
+     * Envoie un e-mail texte brut via le serveur SMTP configuré.
+     * Retourne false si la configuration SMTP est incomplète ou si l'envoi échoue
+     * (l'erreur est alors écrite dans les logs).
+     *
+     * @param string $to Adresse e-mail du destinataire.
+     * @param string $subject Objet du message.
+     * @param string $body Contenu du message.
+     * @return bool true si le mail a été envoyé, false sinon.
+     */
     public static function send(string $to, string $subject, string $body): bool {
         $env = Init::getEnv();
 

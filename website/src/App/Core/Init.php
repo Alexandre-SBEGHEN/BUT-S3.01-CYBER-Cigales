@@ -74,10 +74,20 @@ class Init {
         return self::$env;
     }
 
+    /**
+     * Permet d'obtenir la connexion PDO partagée par tout le site.
+     *
+     * @return PDO|null Connexion à la base de données, ou null si elle n'est pas établie.
+     */
     public static function getPDO(): ?\PDO {
         return self::$PDO;
     }
 
+    /**
+     * Indique si la connexion à la base de données a réussi.
+     *
+     * @return bool true si la base est connectée, false sinon.
+     */
     public static function isDatabaseConnected(): bool {
         return self::$databaseConnected;
     }

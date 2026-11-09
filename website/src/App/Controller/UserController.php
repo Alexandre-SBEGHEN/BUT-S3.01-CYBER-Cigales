@@ -4,10 +4,25 @@ namespace App\Controller;
 
 use App\Model\UserModel;
 use App\Model\TokenModel;
+
+/**
+ * UserController.php
+ *
+ * Contrôleur des pages liées à l'utilisateur :
+ * connexion, inscription, profil, suppression de compte
+ * et réinitialisation du mot de passe.
+ */
 class UserController extends Controller
 {
     public const ROUTABLE = true;
 
+    /**
+     * Vérifie les identifiants envoyés par le formulaire de connexion.
+     * Ouvre la session puis redirige vers /profile, ou revient sur /login avec une erreur.
+     *
+     * @param array $args Arguments de l'URL (inutilisés).
+     * @return void
+     */
     public function requestAuthentification(array $args): void {
         $mail = trim($_POST["mail"] ?? '');
         if (empty($mail)) {
@@ -58,6 +73,12 @@ class UserController extends Controller
         exit;
     }
 
+    /**
+     * Affiche la page de connexion (GET) ou traite le formulaire (POST).
+     *
+     * @param array $args Arguments de l'URL (inutilisés).
+     * @return void
+     */
     public function requestLogin(array $args): void {
         if ($_SERVER['REQUEST_METHOD'] === 'POST')
             $this->requestAuthentification($args);
@@ -65,6 +86,12 @@ class UserController extends Controller
         (new \App\View\User\LoginView())->show();
     }
 
+    /**
+     * Détruit la session de l'utilisateur et redirige vers l'accueil.
+     *
+     * @param array $args Arguments de l'URL (inutilisés).
+     * @return void
+     */
     public function requestLogout(array $args): void
     {
         // Vider le tableau de session
@@ -78,6 +105,13 @@ class UserController extends Controller
         exit;
     }
 
+    /**
+     * Affiche la confirmation (GET) puis supprime le compte connecté (POST).
+     * Redirige vers /login si l'utilisateur n'est pas connecté.
+     *
+     * @param array $args Arguments de l'URL (inutilisés).
+     * @return void
+     */
     public function requestDeleteAccount(array $args): void
     {
         if ($_SERVER["REQUEST_METHOD"] === "GET") {
@@ -120,6 +154,12 @@ class UserController extends Controller
         exit;
     }
 
+    /**
+     * Affiche la page d'inscription (GET) ou traite le formulaire (POST).
+     *
+     * @param array $args Arguments de l'URL (inutilisés).
+     * @return void
+     */
     public function requestRegister(array $args): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -131,6 +171,13 @@ class UserController extends Controller
         (new \App\View\User\RegisterView())->show();
     }
 
+    /**
+     * Affiche la page de profil de l'utilisateur connecté.
+     * Redirige vers /login si aucune session n'est ouverte.
+     *
+     * @param array $args Arguments de l'URL (inutilisés).
+     * @return void
+     */
     public function requestProfile(array $args): void
     {
         if (!isset($_SESSION['user_id'])) {
@@ -140,6 +187,14 @@ class UserController extends Controller
         (new \App\View\User\ProfileView())->show($_SESSION['user']);
     }
 
+    /**
+     * Affiche le formulaire « mot de passe oublié » (GET) ou génère un token
+     * et envoie le lien de réinitialisation par mail (POST).
+     * Le message affiché est identique que l'adresse existe ou non.
+     *
+     * @param array $args Arguments de l'URL (inutilisés).
+     * @return void
+     */
     public function requestForgotPassword(array $args): void
     {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -183,6 +238,13 @@ class UserController extends Controller
             (new \App\View\User\ForgotPasswordView())->show();
     }
 
+    /**
+     * Affiche le formulaire de nouveau mot de passe (GET) ou l'enregistre (POST)
+     * si le token de l'URL est valide et non expiré.
+     *
+     * @param array $args Arguments de l'URL (inutilisés).
+     * @return void
+     */
     public function requestResetPassword(array $args): void{
 
             $token = trim($_GET['token'] ?? $_POST['token'] ?? '');
@@ -231,6 +293,13 @@ class UserController extends Controller
             (new \App\View\User\ResetPasswordView())->show($token);
     }
 
+    /**
+     * Valide les champs du formulaire d'inscription (champs remplis, email valide,
+     * mot de passe d'au moins 12 caractères avec majuscule, minuscule, chiffre et
+     * caractère spécial, email non utilisé) puis crée le compte.
+     *
+     * @return void
+     */
     private function processRegister(): void
     {
         $prenom = trim($_POST['prenom'] ?? '');
