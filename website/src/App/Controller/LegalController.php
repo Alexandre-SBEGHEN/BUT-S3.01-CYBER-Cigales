@@ -11,7 +11,7 @@ use App\View\LegalView;
  *
  * @author Kawthar CHAIB EDDOUR
  */
-class LegalController {
+class LegalController extends Controller {
     public const ROUTABLE = true;
 
     public function execute(): void {
