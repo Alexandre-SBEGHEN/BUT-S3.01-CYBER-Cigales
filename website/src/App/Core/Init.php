@@ -2,6 +2,8 @@
 
 namespace App\Core;
 
+use PDO;
+
 /**
  * Init.php
  *
@@ -17,6 +19,10 @@ namespace App\Core;
 class Init {
     // private static string $rootDir;
     private static ?Env $env;
+
+    private static ?PDO $PDO = null;
+
+    private static bool $databaseConnected;
 
     /**
      * Initialisation du site web.
@@ -42,6 +48,20 @@ class Init {
         // Niveau d'activation des erreurs et warnings
         error_reporting(self::$env->getPhpErrorReporting());
 
+        $servername = self::$env->getConfig('database', 'host');
+        $dbname     = self::$env->getConfig('database', 'dbname');
+        $username   = self::$env->getConfig('database', 'username');
+        $password   = self::$env->getConfig('database', 'password');
+
+        try {
+            self::$PDO = new \PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            self::$databaseConnected = true;
+        } catch (\PDOException $e) {
+            self::$PDO = null;
+            self::$databaseConnected = false;
+            throw new \Exception("Erreur de connexion à la base de données : " . $e->getMessage());
+        }
+
         return 0;
     }
 
@@ -52,5 +72,23 @@ class Init {
      */
     public static function getEnv(): Env {
         return self::$env;
+    }
+
+    /**
+     * Permet d'obtenir la connexion PDO partagée par tout le site.
+     *
+     * @return PDO|null Connexion à la base de données, ou null si elle n'est pas établie.
+     */
+    public static function getPDO(): ?\PDO {
+        return self::$PDO;
+    }
+
+    /**
+     * Indique si la connexion à la base de données a réussi.
+     *
+     * @return bool true si la base est connectée, false sinon.
+     */
+    public static function isDatabaseConnected(): bool {
+        return self::$databaseConnected;
     }
 }

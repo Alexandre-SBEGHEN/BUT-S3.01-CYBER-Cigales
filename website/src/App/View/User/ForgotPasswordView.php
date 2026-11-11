@@ -1,0 +1,38 @@
+<?php
+
+namespace App\View\User;
+use App\View\TemplateView;
+class ForgotPasswordView {
+    public function show(): void {
+        TemplateView::htmlBegin(
+            title: 'Mot de passe oublié',
+            description: 'Page du mdp oublié',
+            cssNames: ['reset.css','fonts.css', 'header.css', 'footer.css']
+        );
+        TemplateView::pageHeader();
+
+        if (isset($_SESSION['error'])) {
+            echo "<p class='error'>" . htmlspecialchars($_SESSION['error']) . "</p>\n";
+            unset($_SESSION['error']);
+        }
+
+        if (isset($_SESSION['success'])) {
+            echo "<p class='success'>" . htmlspecialchars($_SESSION['success']) . "</p>\n";
+            unset($_SESSION['success']);
+        }
+
+        echo <<< HTML
+<div class="container">
+    <h1>Mot de passe oublié</h1>
+    <form action="/forgot-password" method="POST">
+        <input type="email" name="mail" placeholder="email" required>
+        <br>
+        <button type="submit" name="submit">Envoyer le lien</button>
+    </form>
+</div>
+HTML;
+
+        TemplateView::pageFooter();
+        TemplateView::htmlEnd();
+    }
+}

@@ -16,11 +16,24 @@ use App\Core\Router;
 // Charger automatiquement les classes
 require_once '../src/App/Core/Autoloader.php';
 
+require_once __DIR__ . '/../vendor/autoload.php';
+
 // Initialisation du site
 Init::init(dirname(__DIR__), dirname(__DIR__) . '/.env');
+
+session_start();
 
 // Routage
 $path = trim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?? '', '/') ?: '/';
 $parts = explode('/', $path);
-$router = new Router($parts);
+$otherRoutes = array(
+    'login' => ['user', 'login'],
+    'logout' => ['user', 'logout'],
+    'register' => ['user', 'register'],
+    'profile' => ['user', 'profile'],
+    'delete-account' => ['user', 'delete-account'],
+    'forgot-password' => ['user', 'forgot-password'],
+    'reset-password' => ['user', 'reset-password'],
+);
+$router = new Router($parts, $otherRoutes);
 $router->execute();

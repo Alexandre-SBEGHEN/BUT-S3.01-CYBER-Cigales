@@ -13,6 +13,7 @@ namespace App\Core;
  */
 class Env {
     private int $phpErrorReporting;
+    private array $iniData = [];
 
     /**
      * Constructeur de Env.
@@ -25,10 +26,12 @@ class Env {
      */
     public function __construct(string $envPath) {
         // Parsing du .env
-        $ini = parse_ini_file($envPath, true);
+        $this->iniData = parse_ini_file($envPath, true) ?: [];
 
         // Section PHP
-        $this->phpErrorReporting = $ini['php']['error_reporting'];
+        $this->phpErrorReporting = isset($this->iniData['php']['error_reporting'])
+            ? (int)$this->iniData['php']['error_reporting']
+            : 32767;
     }
 
     /**
@@ -40,4 +43,9 @@ class Env {
     public function getPhpErrorReporting(): int {
         return $this->phpErrorReporting;
     }
+
+    public function getConfig(string $section, string $key) {
+        return $this->iniData[$section][$key] ?? null;
+    }
+
 }
